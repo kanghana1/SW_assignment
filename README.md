@@ -7,7 +7,7 @@
 
 <hr> 
 
-<h3>스터디원</h3>
+<h3>🌟스터디원🌟</h3>
 
 * [Kang Hana](https://github.com/kanghana1)
 * [Kim Chaewon](https://github.com/rud15dns)
