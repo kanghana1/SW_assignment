@@ -1,5 +1,5 @@
 # SW_assignment
-2023, SW융합개발연구과제 백준 단계별 문제풀이 레포 
+2023, SW융합개발연구과제 백준 단계별 문제풀이 기록하기
 
 ![스크린샷(344)](https://github.com/kanghana1/SW_assignment/assets/107329874/7b280d24-5d38-4ed6-8c1f-80c3c1f72ee0)
 
