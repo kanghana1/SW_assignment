@@ -8,6 +8,7 @@
 <hr> 
 
 <h3>스터디원</h3>
+
 * [Kang Hana](https://github.com/kanghana1)
 * [Kim Chaewon](https://github.com/kanghana1)
 * [Choi Soeun](https://github.com/kanghana1)
