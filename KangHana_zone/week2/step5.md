@@ -155,6 +155,123 @@ public class Main {
 
 **문제**
 
+N개의 숫자가 공백 없이 쓰여있다. 이 숫자를 모두 합해서 출력하는 프로그램을 작성하시오.
+
 **필요개념**
 
+charAt()은 해당 문자의 아스키코드 값을 반환하기 때문에, 반드시 -48 또는 ‘-0’을 덧붙여줘야 한다고 한다!
+
+아래 코드 말고도 Scanner를 써봤는데, 러닝타임이 거의 두배차이가 났다..! 버퍼랑 친해져야겠습니다..
+
 **정답코드**
+
+```java
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        br.readLine();
+        int sum = 0;
+        String num = br.readLine();
+
+        for (int i = 0; i < num.length(); i++) {
+            sum += num.charAt(i) - 48;
+        }
+
+        System.out.print(sum);
+    }
+}
+```
+
+---
+
+### ✅ 문제 6 \_ 알파벳 찾기
+
+**문제**
+
+알파벳 소문자로만 이루어진 단어 S가 주어진다. 각각의 알파벳에 대해서, 단어에 포함되어 있는 경우에는 처음 등장하는 위치를, 포함되어 있지 않은 경우에는 -1을 출력하는 프로그램을 작성하시오.
+
+**필요개념**
+
+일단 배열을 다 -1로 채워둔 후, 알파벳이 나타나면 거기에 위치를 넣는 식으로 풀었다.
+
+처음 등장하는 위치를 넣어야 하므로 배열의 값이 -1일때만 넣고 아닐때는 넣지 않는다. (이미 첫 값이 들어갔다는 뜻이니까)
+
+알파벳위치는 아스키코드를 이용했다!
+
+**정답코드**
+
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String s = br.readLine();
+        int[] arr = new int[26];
+        Arrays.fill(arr,-1);
+
+        for (int i = 0; i < s.length() ; i++) {
+            int a = s.charAt(i) - 97;
+            if (arr[a] == -1) arr[a] = i;
+        }
+        Arrays.stream(arr).forEach(value -> System.out.print(value + " "));
+    }
+}
+```
+
+<hr>
+
+### ✅ 문제 7 \_ 문자열 반복 🌟🌟
+
+**문제**
+
+문자열 S를 입력받은 후에, 각 문자를 R번 반복해 새 문자열 P를 만든 후 출력하는 프로그램을 작성하시오. 즉, 첫 번째 문자를 R번 반복하고, 두 번째 문자를 R번 반복하는 식으로 P를 만들면 된다. S에는 QR Code "alphanumeric" 문자만 들어있다.
+
+QR Code "alphanumeric" 문자는 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\$%*+-./:` 이다.
+
+**필요개념**
+
+일단 Scanner 대신 버퍼를 쓰려고 노력했다! 반복횟수와 반복할 문자열이 한 줄에 나오기 때문에, split() 메소드를 통해서 분리시켰다. 버퍼는 String을 리턴하기 때문에 숫자의 경우에는 Integer.parseInt() 메소드를 이용해 int형으로 바꿔야함!
+
+문자열을 계속 수정해야 하는데,, char배열을 쓴 후 toString()을 써도 될 거 같았지만, 나는 오랜만에 StringBuilder를 썼다. 요소를 추가하기 너무 편하기 때문.. 그리고 String을 여러개 생성할 필요가 없다는 점이 효율적이라고 느꼈다!
+
+📌아 근데 삼중 for문밖에 답이 없을지 나누고 싶다..
+
+**정답코드**
+
+```java
+import java.io.*;
+import java.lang.StringBuilder;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0 ; i < n ; i++) {
+            String a = br.readLine();
+            String[] arr = a.split(" ");
+
+            int num = Integer.parseInt(arr[0]);
+            for (int k = 0 ; k < arr[1].length() ; k++) {
+                for (int j = 0 ; j < num ; j++) {
+                    sb.append(arr[1].charAt(k));
+                }
+            }
+            sb.append("\n");
+        }
+        System.out.print(sb.toString());
+    }
+}
+```
+
+---
+
+문제 1~7 풀이 끗!
+![5](../img/5.png)
