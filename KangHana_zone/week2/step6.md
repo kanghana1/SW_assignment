@@ -7,17 +7,32 @@
 ### ✅ 문제 1 \_ 새싹
 
 **문제**
+아래 예제와 같이 새싹을 출력하시오.
+
+```java
+         ,r'"7
+r`-_   ,'  ,/
+ \. ". L_r'
+   `~\/
+      |
+      |
+```
 
 **필요개념**
+
+따옴표 안에 따옴표를 출력할 떄는 \를 끼워넣어줘야 한다! 그리고 \를 출력할 떈 이거 앞에도 \를 끼워넣으면 된다. 이것만 알고 있으면 쉽게 출력이 가능하다.
 
 **정답코드**
 
 ```java
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
-
+        System.out.println("         ,r'\"7");
+        System.out.println("r`-_   ,'  ,/");
+        System.out.println(" \\. \". L_r'");
+        System.out.println("   `~\\/");
+        System.out.println("      |");
+        System.out.println("      |");
     }
 }
 ```
