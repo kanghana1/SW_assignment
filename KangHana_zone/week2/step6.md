@@ -180,3 +180,130 @@ public class Main {
 }
 
 ```
+
+---
+
+### ✅ 문제 5 \_ 단어 공부 🌟🌟
+
+**문제**
+
+알파벳 대소문자로 된 단어가 주어지면, 이 단어에서 가장 많이 사용된 알파벳이 무엇인지 알아내는 프로그램을 작성하시오. 단, 대문자와 소문자를 구분하지 않는다.
+
+첫째 줄에 이 단어에서 가장 많이 사용된 알파벳을 대문자로 출력한다. 단, 가장 많이 사용된 알파벳이 여러 개 존재하는 경우에는 ?를 출력한다
+
+**필요개념**
+
+대소문자 구분 없고 출력은 대문자로 하기 때문에 받은 문자열을 **toUpperCase()** 메소드를 이용하여 대문자로 바꾸었다.
+
+이후 알파벳 개수만큼의 사이즈를 갖는 int형 배열을 만들어 0으로 채워넣은 후, 나오는 알파벳의 자리 값을 1씩 더해갔다. 이 과정에서 아스키코드 (A가 65라는 점)을 이용했다.
+
+다음 반복문으로 최댓값과 그의 인덱스를 구하고, 또 다른 반복문으로는 max와 같은 값이 또 있는가 즉, 최댓값이 2개 이상 있는가를 확인하여 문제를 풀었다.
+
+근데코드도 너무 길고, 단순 반복문도 너무 많이 사용해 지저분한 느낌이었다. 다른 방법이 있을지 궁금하다!!!
+
+**정답코드**
+
+```java
+import java.io.*;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String ans = br.readLine().toUpperCase();
+        int[] eng = new int[26];
+        Arrays.fill(eng,0);
+
+        for (int i = 0 ; i < ans.length() ; i++) {
+            eng[ans.charAt(i) - 65]++;
+        }
+        int max = -1;
+        int index = -1;
+
+        for (int i = 0 ; i < eng.length ; i++) {
+            if (eng[i] > max) {
+                max = eng[i];
+                index = i;
+            }
+        }
+        int cnt = -1;
+        for (int i = 0 ; i < eng.length ; i++) {
+            if (max == eng[i]) cnt++;
+        }
+
+        if (cnt != 0) System.out.println("?");
+        else System.out.println((char)(65 + index));
+    }
+}
+```
+
+---
+
+### ✅ 문제 6 \_ 크로아티아 알파벳 🌟🌟
+
+**문제**
+
+예전에는 운영체제에서 크로아티아 알파벳을 입력할 수가 없었다. 따라서, 다음과 같이 크로아티아 알파벳을 변경해서 입력했다.
+
+크로아티아 알파벳 / 변경
+
+č / c=
+
+ć / c-
+
+dž / dz=
+
+đ / d-
+
+lj / lj
+
+nj / nj
+
+š / s=
+
+ž / z=
+
+예를 들어, ljes=njak은 크로아티아 알파벳 6개(lj, e, š, nj, a, k)로 이루어져 있다. 단어가 주어졌을 때, 몇 개의 크로아티아 알파벳으로 이루어져 있는지 출력한다.
+
+dž는 무조건 하나의 알파벳으로 쓰이고, d와 ž가 분리된 것으로 보지 않는다. lj와 nj도 마찬가지이다. 위 목록에 없는 알파벳은 한 글자씩 센다.
+
+**필요개념**
+
+우선 크로아티아를 변경한 단어들을 String 배열로 만들어 넣어두었다. 알파벳 개수를 셀 때, 위 표에 없는 알파벳 개수도 써야한다는 걸 간과해서 계속 해맸다,,, boolean 변수를 만들어서 그냥 단어와 크로아티아 단어를 구분했다. (크로아티아 단어면 그 단어 길이만큼 스킵해야하니까)
+
+그리고 String은 객체이므로 ==를 사용할 수 없고 **equals()** 메소드를 사용해야 한다는거 절대 잊지말기... 맨날 까먹음;;
+
+**정답코드**
+
+```java
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String ans = br.readLine();
+        String[] s = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
+
+        int cnt = 0;
+        int i = 0;
+        while (i < ans.length()) {
+            boolean found = false;
+            for (int j = 0; j < s.length; j++) {
+                if (i + s[j].length() <= ans.length() && ans.substring(i, i + s[j].length()).equals(s[j])) {
+                    cnt++;
+                    i += s[j].length();
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                cnt++;
+                i++;
+            }
+        }
+        System.out.print(cnt);
+    }
+}
+```
