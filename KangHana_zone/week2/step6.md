@@ -240,7 +240,7 @@ public class Main {
 
 ---
 
-### ✅ 문제 6 \_ 크로아티아 알파벳 🌟🌟
+### ✅ 문제 6 \_ 크로아티아 알파벳
 
 **문제**
 
@@ -307,3 +307,57 @@ public class Main {
     }
 }
 ```
+
+---
+
+### ✅ 문제 7 \_ 그룹 단어 체커
+
+**문제**
+
+그룹 단어란 단어에 존재하는 모든 문자에 대해서, 각 문자가 연속해서 나타나는 경우만을 말한다. 예를 들면, ccazzzzbb는 c, a, z, b가 모두 연속해서 나타나고, kin도 k, i, n이 연속해서 나타나기 때문에 그룹 단어이지만, aabbbccb는 b가 떨어져서 나타나기 때문에 그룹 단어가 아니다.
+
+단어 N개를 입력으로 받아 그룹 단어의 개수를 출력하는 프로그램을 작성하시오.
+
+**필요개념**
+
+이 문제도 boolean 변수를 이용했다. i번째 문자와 i+1번째 문자가 다르면, i+1번째 문자 이후에 i번째 문자와 같은 것이 오면 안 된다는 것을 이용해 반복문과 if문을 이용했다.
+
+이후에 문자가 왔는지는 indexOf() 메소드를 이용했다. 첫 파라미터에는 i번째 문자를, 두번째 파라미터에는 i+1을 넣어서 i+1 이후 문자를 확인하도록 짰다.
+
+해당 값이 -1이면 이후에 문자가 안 나온다는 뜻이고 -1이 아니면 나온다는 의미이므로, -1이 아닐땐 불린 값을 바꾸고 break를 이용해 반복문을 빠져나왔다.
+
+**정답코드**
+
+```java
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(br.readLine());
+        int cnt = 0;
+
+        for (int i = 0 ; i < n ; i++) {
+            boolean bool = false;
+            int sol = -1; // 이거도 리셋 해줘야함
+            String ans = br.readLine();
+            for (int j = 0; j < ans.length() - 1; j++) {
+                if (ans.charAt(j) != ans.charAt(j + 1)) sol = ans.indexOf(ans.charAt(j), j+1);
+                if (sol != -1) {
+                    bool = true;
+                    break;
+                }
+            }
+            if (bool == false) cnt++;
+        }
+        System.out.println(cnt);
+    }
+}
+```
+
+---
+
+문제 1~7 풀이 끝!
+
+![6](../img/6.png)
