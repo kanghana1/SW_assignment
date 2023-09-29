@@ -153,8 +153,45 @@ public class Main {
 
 **필요개념**
 
+원래는 색종이 개수를 받아서 겹치는 부분을 빼려고 했는데, 여러 개가 겹칠 때 경우의 수가 너무 많아서 색종이 부분을 1로 채워 넓이를 구하는 방식으로 구현했다.
+
+그래서 Arrays.fill() 을 사용해 0을 채워넣으려고 했는데 **ArrayStoreException**이 떴다! 찾아보니 Arrays.fill은 일차원배열에서만 사용이 가능하다고 한다. 잘 알아두기! Arrays.fill을 없애니까 에러가 안 떴다
+
 **정답코드**
 
 ```java
+import java.util.Arrays;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[][] whole = new int[100][100];
+        // Arrays.fill을 썼는데 ArrayStoreException 에러 발생
 
+        for (int i = 0; i < n; i++) {
+            int x = sc.nextInt() - 1;
+            int y = sc.nextInt() - 1;
+
+            for (int j = x ; j < x + 10 ; j++) {
+                for (int k = y ; k < y + 10 ; k++) {
+                    whole[j][k] = 1;
+                }
+            }
+        }
+        int cnt = 0;
+        for (int i = 0 ; i < 100 ; i++) {
+            for (int j = 0 ; j < 100 ; j++) {
+                if (whole[i][j] == 1) cnt++;
+            }
+        }
+        System.out.print(cnt);
+    }
+}
 ```
+
+---
+
+문제 1~4 모두 풀이 끝!
+
+![7](../img/7.png)
